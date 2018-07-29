@@ -29,10 +29,6 @@ $clockSize: 150px;
 	border-radius: 50%;
 	position: relative;
 
-	// &:after {
-
-	// }
-
 	ol {
 		position: absolute;
 		top: 50%;
@@ -104,8 +100,6 @@ $clockSize: 150px;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-
-		
 	}
 
 	.hour-hand {
@@ -170,6 +164,4 @@ $clockSize: 150px;
 			@include hand-pointer($heightHand / 2, $heightHand / 2, 1px);
 		}
 	}
-
-
 }
