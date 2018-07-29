@@ -1,0 +1,15 @@
+<div class="clock">
+
+  <div class="center-circle"></div>
+  <div class="hour-hand" [ngStyle]="{'transform': 'translate(0%, -50%) rotate(' + hourRadius + 'deg)'}"></div>
+  <div class="minute-hand" [ngStyle]="{'transform': 'translate(0%, -50%) rotate(' + minuteRadius + 'deg)'}"></div>
+  <div class="second-hand" [ngStyle]="{'transform': 'translate(0%, -50%) rotate(' + secondRadius + 'deg)'}"></div>
+  <ol>
+    <li *ngFor="let n of numbers">
+      <span>{{ n }}</span>
+    </li>
+  </ol>
+  <ul class="clock-marks">
+    <li *ngFor="let mark of marks; let i = index" [class.bold]="i % 5 === 0"></li>
+  </ul>
+</div>

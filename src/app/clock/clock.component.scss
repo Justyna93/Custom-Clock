@@ -1,0 +1,175 @@
+$clockSize: 150px;
+
+@mixin hand-after($heightHand) {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -10px;
+	width: 10px;
+	height: $heightHand;
+	background-color: black;
+}
+
+@mixin hand-pointer($top, $bottom, $left) {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 100%;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: $top 0 $bottom $left;
+	border-color: transparent transparent transparent black; 
+}
+
+.clock {
+	height: $clockSize;
+	width: $clockSize;
+	border: 5px solid black;
+	border-radius: 50%;
+	position: relative;
+
+	// &:after {
+
+	// }
+
+	ol {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		transform: translate(-50%,-50%);
+		height: 0;
+		margin: 0;
+
+		li {
+			position: absolute;
+			top: 0;
+			left: 20px;
+			margin: 0;
+			transform-origin: 50% ($clockSize / 2) - 4; 
+			display: inline-block;
+
+			@for $i from 0 to 12 {
+				&:nth-child(#{$i + 1}) {
+					transform: translateX(-50%) translateY(- ($clockSize / 2) + 4) rotate($i * 30deg);
+					span {
+						transform: translate(-50%,0) rotate(- ($i * 30deg));
+						position: absolute;
+
+					}
+				}
+			}
+		}
+	}
+	
+	ul {
+		list-style: none;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		transform: translate(-50%,-50%);
+		height: 0;
+		margin: 0;
+
+		li {
+			position: absolute;
+			top: 0;
+			left: 20px;
+			margin: 0;
+			transform-origin: 50% ($clockSize / 2); 
+			display: inline-block;
+			border: 0.6px solid black;
+			height: 2px;
+
+			@for $i from 0 to 60 {
+				&:nth-child(#{$i + 1}) {
+					transform: translateX(-50%) translateY(- ($clockSize / 2)) rotate($i * 6deg);
+				}
+			}
+
+			&.bold {
+				border: 1px solid black;
+			}
+		}
+	}
+
+	.center-circle {
+		height: 10px;
+		width: 10px;
+		border-radius: 50%;
+		background-color: brown;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		
+	}
+
+	.hour-hand {
+		$heightHand: 5px;
+
+		height: $heightHand;
+		width: 40px;
+		background-color: black;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(0%, -50%) rotate(45deg);
+		transform-origin: 0% 50%;
+
+		&::after {
+			@include hand-after($heightHand);
+		}
+
+		&::before {
+			@include hand-pointer($heightHand / 2, $heightHand / 2, 3px);
+		}
+	}
+
+	.minute-hand {
+		$heightHand: 3px;
+
+		height: 3px;
+		width: 60px;
+		background-color: black;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(0%, -50%) rotate(-90deg);
+		transform-origin: 0% 50%;
+
+		&::after {
+			@include hand-after($heightHand);
+		}
+
+		&::before {
+			@include hand-pointer($heightHand / 2, $heightHand / 2, 2px);
+		}
+	}
+
+	.second-hand {
+		$heightHand: 1px;
+
+		height: 1px;
+		width: 65px;
+		background-color: black;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(0%, -50%) rotate(-90deg);
+		transform-origin: 0% 50%;
+
+		&::after {
+			@include hand-after($heightHand);
+		}
+
+		&::before {
+			@include hand-pointer($heightHand / 2, $heightHand / 2, 1px);
+		}
+	}
+
+
+}
